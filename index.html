@@ -512,38 +512,50 @@
         please use the form below.
       </p>
 
-      <form action="" class="max-w-2xl mx-auto">
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-8 sm:mt-10 mb-6 sm:mb-8"
-        >
-          <input
-            type="text"
-            placeholder="Enter your name"
-            class="flex-1 p-3 outline-none border-[0.5px] border-gray-400 rounded-md bg-white"
-            required
-          />
-          <input
-            type="email"
-            placeholder="Enter your email"
-            class="flex-1 p-3 outline-none border-[0.5px] border-gray-400 rounded-md bg-white"
-            required
-          />
-        </div>
-        <textarea
-          rows="6"
-          placeholder="Enter your message"
-          class="w-full p-4 outline-none border-[0.5px] border-gray-400 rounded-md bg-white mb-6"
-          required
-        ></textarea>
-        <button
-          type="submit"
-          class="py-3 px-8 w-max flex items-center justify-between gap-2 bg-black/80 text-white rounded-full mx-auto hover:bg-black duration-500 cursor-pointer"
-        >
-          Submit now
-          <img src="./public/right-arrow-white.png" alt="" class="w-4" />
-        </button>
-      </form>
-    </div>
+      <form action="https://formspree.io/f/xgvnyweg"
+      method="POST"
+      class="max-w-2xl mx-auto">
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-8 sm:mt-10 mb-6 sm:mb-8">
+    <input
+      type="text"
+      name="name"
+      placeholder="Enter your name"
+      class="flex-1 p-3 outline-none border-[0.5px] border-gray-400 rounded-md bg-white"
+      required
+    />
+    <input
+      type="email"
+      name="email"
+      placeholder="Enter your email"
+      class="flex-1 p-3 outline-none border-[0.5px] border-gray-400 rounded-md bg-white"
+      required
+    />
+  </div>
+
+  <textarea
+    name="message"
+    rows="6"
+    placeholder="Enter your message"
+    class="w-full p-4 outline-none border-[0.5px] border-gray-400 rounded-md bg-white mb-6"
+    required
+  ></textarea>
+
+  <button
+    type="submit"
+    class="py-3 px-8 w-max flex items-center justify-between gap-2 bg-black/80 text-white rounded-full mx-auto hover:bg-black duration-500 cursor-pointer"
+  >
+    Submit now
+    <img src="./public/right-arrow-white.png" alt="" class="w-4" />
+  </button>
+</form>
+
+<!-- Toast container -->
+<div id="toast"
+     class="fixed bottom-10 right-5 bg-green-800/80 text-white px-4 py-2 rounded-lg shadow-lg opacity-0 translate-y-4 pointer-events-none transition-all duration-500">
+  Catch you soon..!👍🏻
+</div>
+
 
     <!-- Footer -->
     <div class="mt-12 sm:mt-20">
