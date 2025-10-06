@@ -31,6 +31,17 @@
       .font-ovo {
         font-family: "Ovo", serif;
       }
+      
+      /* Fix for extra space */
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      
+      main {
+        flex: 1;
+      }
     </style>
   </head>
   <body class="overflow-x-hidden font-outfit leading-8">
@@ -125,7 +136,7 @@
           <a href="#skills" onclick="closeMenu()">Skills</a>
         </li>
         <li>
-          <a href="#work" onclick="closeMenu()">My Work</a>
+          <a href="#work" onclick="closeMenu()">Projects</a>
         </li>
         <li>
           <a href="#contact" onclick="closeMenu()">Contact me</a>
@@ -133,447 +144,445 @@
       </ul>
     </nav>
 
-    <!-- Header/Hero Section -->
-    <div
-      class="w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4 px-4"
-    >
-      <img
-        src="./public/profile3.jpg"
-        alt="memoji"
-        class="rounded-full w-28 h-28 sm:w-32 sm:h-32 object-cover border-2 border-gray-200"
+    <main>
+      <!-- Header/Hero Section -->
+      <div
+        class="w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4 px-4"
+      >
+        <img
+          src="./public/profile3.jpg"
+          alt="memoji"
+          class="rounded-full w-28 h-28 sm:w-32 sm:h-32 object-cover "
+        />
+        <h3 class="flex items-end gap-2 text-xl md:text-2xl mb-3 font-ovo">
+          Hi, I'm Mohan
+          <img src="./public/hand-icon.png" alt="" class="w-5 sm:w-6" />
+        </h3>
+        <h1 class="text-4xl sm:text-5xl lg:text-[66px] font-medium font-ovo">
+          full stack developer
+        </h1>
+        <p class="max-w-2xl mx-auto text-gray-600 font-ovo">
+          I am a MERN stack developer with a passion for creating dynamic and
+          responsive web applications.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center gap-4 mt-6">
+          <a
+            href="#contact"
+            class="px-8 sm:px-10 py-3 border rounded-full bg-gradient-to-r from-[#b820e6] to-[#da7d20] text-white flex items-center gap-2 hover:shadow-md transition"
+            >Contact me
+            <img
+              src="./public/right-arrow-white.png"
+              alt="right-arrow-icon"
+              class="w-4"
+          /></a>
+
+          <a
+            href="https://drive.google.com/file/d/1hEXjvkl2_cpntEh2dhST2o7sBlE3b-j5/view?usp=drive_link"
+            download
+            class="px-8 sm:px-10 py-3 border rounded-full border-gray-500 bg-white flex items-center gap-2 hover:bg-gray-50 transition"
+            >My Resume
+            <img src="./public/download-icon.png" alt="download-icon" class="w-4"
+          /></a>
+        </div>
+      </div>
+
+      <!-- About Me Section -->
+      <div
+        id="about"
+        class="w-full px-4 sm:px-6 md:px-[8%] lg:px-[12%] py-10 md:py-16 scroll-mt-20"
+      >
+        <h4 class="text-center mb-2 text-lg text-gray-500 font-ovo">
+          Introduction
+        </h4>
+        <h2 class="text-center text-4xl sm:text-5xl font-medium font-ovo">
+          About me
+        </h2>
+
+        <div
+          class="flex w-full flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 xl:gap-20 my-12 lg:my-20"
+        >
+          <div class="max-w-max mx-auto relative">
+            <img
+              src="./public/profile10-removebg-preview.png"
+              alt="profile-pic"
+              class="w-56 sm:w-64 md:w-80 rounded-3xl max-w-none"
+            />
+            <div
+              class="bg-white w-1/2 aspect-square absolute right-0 bottom-0 rounded-full translate-x-1/4 translate-y-1/3 shadow-[0_4px_55px_rgba(149,0,162,0.15)] flex items-center justify-center"
+            >
+              <img
+                src="./public/circular-text.png"
+                alt=""
+                class="rounded-full animate-spin-slow"
+              />
+              <img
+                src="./public/profile2.jpg"
+                alt=""
+                class="w-1/4 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+              />
+            </div>
+          </div>
+          <div class="flex-1 w-full max-w-2xl lg:max-w-none mt-8">
+            <p class="mb-8 max-w-2xl text-gray-600 font-ovo">
+              I am a Full-Stack Developer specializing in the MERN stack, with
+              hands-on experience in building scalable web applications, REST
+              APIs, and cloud-based solutions. I have experience in developing
+              user-friendly interfaces and optimizing application performance.
+            </p>
+
+            <ul
+              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-2xl"
+            >
+              <li
+                class="border-[0.5px] border-gray-400 rounded-xl p-4 sm:p-6 cursor-pointer hover:bg-[#fcf4ff] hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000]"
+              >
+                <img
+                  src="./public/code-icon.png"
+                  alt="icon"
+                  class="w-6 sm:w-7 mt-3"
+                />
+                <h3 class="my-3 sm:my-4 font-semibold text-gray-700">
+                  Languages
+                </h3>
+                <p class="text-gray-600 text-sm">
+                  HTML, CSS, TailwindCSS, JavaScript, React Js, Node Js, Express
+                  Js, MySQL, MongoDB
+                </p>
+              </li>
+
+              <li
+                class="border-[0.5px] border-gray-400 rounded-xl p-4 sm:p-6 cursor-pointer hover:bg-[#fcf4ff] hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000]"
+              >
+                <img
+                  src="./public/edu-icon.png"
+                  alt="icon"
+                  class="w-6 sm:w-7 mt-3"
+                />
+                <h3 class="my-3 sm:my-4 font-semibold text-gray-700">
+                  Education
+                </h3>
+                <p class="text-gray-600 text-sm break-words">
+                  B.E in Electronics and Communication Engineering
+                </p>
+              </li>
+
+              <li
+                class="border-[0.5px] border-gray-400 rounded-xl p-4 sm:p-6 cursor-pointer hover:bg-[#fcf4ff] hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000]"
+              >
+                <img
+                  src="./public/project-icon.png"
+                  alt="icon"
+                  class="w-6 sm:w-7 mt-3"
+                />
+                <h3 class="my-3 sm:my-4 font-semibold text-gray-700">Projects</h3>
+                <p class="text-gray-600 text-sm">Built more than 5 projects</p>
+              </li>
+            </ul>
+
+            <h4 class="my-6 text-gray-700 font-ovo">Tools i use</h4>
+
+            <ul class="flex items-center flex-wrap gap-3 sm:gap-5">
+              <li
+                class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500 hover:shadow-md"
+              >
+                <img src="./public/vscode.png" alt="tools" class="w-5 sm:w-6" />
+              </li>
+
+              <li
+                class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500 hover:shadow-md"
+              >
+                <img src="./public/mongodb.png" alt="tools" class="w-5 sm:w-6" />
+              </li>
+              <li
+                class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500 hover:shadow-md"
+              >
+                <img
+                  src="./public/postman-original.svg"
+                  alt="tools"
+                  class="w-5 sm:w-6"
+                />
+              </li>
+              <li
+                class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500 hover:shadow-md"
+              >
+                <img src="./public/figma.png" alt="tools" class="w-5 sm:w-6" />
+              </li>
+              <li
+                class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500 hover:shadow-md"
+              >
+                <img src="./public/git.png" alt="tools" class="w-5 sm:w-6" />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certificates Section -->
+      <div
+        id="skills"
+        class="w-full px-4 sm:px-6 md:px-[8%] lg:px-[12%] py-10 md:py-16 scroll-mt-20 mb-8"
+      >
+        <h4 class="text-center mb-2 text-lg text-gray-500 font-ovo">Skills</h4>
+        <h2 class="text-center text-4xl sm:text-5xl font-medium font-ovo">
+          Certificates
+        </h2>
+        <p
+          class="text-center max-w-2xl mx-auto mt-5 mb-8 sm:mb-12 text-gray-600 font-ovo"
+        >
+          Here are some of my certifications that highlight my skills, continuous
+          learning, and expertise in web development.
+        </p>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 my-8 sm:my-10 gap-4 sm:gap-5"
+        >
+          <a
+            href="https://drive.google.com/file/d/1VWPplZnmg7X8rGu_dsu9n-qyaKSOfCWH/view?usp=sharing"
+            target="_blank"
+            class="border p-4 sm:p-6 rounded-lg border-gray-400 cursor-pointer hover:bg-[#fcf4ff] hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000] block"
+          >
+            <img
+              src="./public/certificate-2.png"
+              alt="Certificate 1"
+              class="w-full"
+            />
+          </a>
+
+          <a
+            href="https://drive.google.com/file/d/1TckC-o7uptoX4n-61YjnvpMEfUJ5P8et/view?usp=sharing"
+            target="_blank"
+            class="border p-4 sm:p-6 rounded-lg border-gray-400 cursor-pointer hover:bg-[#fcf4ff] hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000] block"
+          >
+            <img
+              src="./public/certificate-3.png"
+              alt="Certificate 2"
+              class="w-full"
+            />
+          </a>
+
+          <a
+            href="https://drive.google.com/file/d/1fAWp6seLYu5ZaBqCyRiPA91YRk8RIpMT/view?usp=sharing"
+            target="_blank"
+            class="border p-4 sm:p-6 rounded-lg border-gray-400 cursor-pointer hover:bg-[#fcf4ff] hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000] block"
+          >
+            <img
+              src="./public/certificate-1.png"
+              alt="Certificate 3"
+              class="w-full"
+            />
+          </a>
+        </div>
+      </div>
+
+      <!-- My Work Section -->
+      <div
+        id="work"
+        class="w-full px-4 sm:px-6 md:px-[8%] lg:px-[12%] py-10 md:py-16 scroll-mt-20"
+      >
+        <h4 class="text-center mb-2 text-lg text-gray-500 font-ovo">
+          Portfolio
+        </h4>
+        <h2 class="text-center text-4xl sm:text-5xl font-medium font-ovo">
+          Latest Work
+        </h2>
+        <p
+          class="text-center max-w-2xl mx-auto mt-5 mb-8 sm:mb-12 text-gray-600 font-ovo"
+        >
+          Welcome to my web development portfolio! Explore a collection of
+          projects showcasing my expertise in front-end and back-end development.
+        </p>
+
+        <div
+          class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-6 sm:gap-8 mb-8 sm:mb-12"
+        >
+          <!-- Project 1: Table Booking -->
+          <a href="https://dinearea.netlify.app/" target="_blank" class="block">
+            <div
+              class="aspect-square bg-[url('./public/work-1.png')] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group border-[0.5px] border-gray-400 hover:shadow-lg transition-all duration-300"
+            >
+              <div
+                class="bg-gray-100 w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-4 sm:px-5 flex items-center justify-between duration-500 group-hover:bottom-7"
+              >
+                <div>
+                  <h2 class="font-semibold text-sm sm:text-base">
+                    Table Booking
+                  </h2>
+                  <p class="text-xs text-gray-700">Web Application</p>
+                </div>
+                <div
+                  class="border rounded-full border-black w-8 h-8 sm:w-9 sm:h-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-purple-300 transition"
+                >
+                  <img src="./public/send-icon.png" alt="" class="w-4 sm:w-5" />
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Project 2: Recipes App -->
+          <a
+            href="https://github.com/SGMohan/Recipes_App.git"
+            target="_blank"
+            class="block"
+          >
+            <div
+              class="aspect-square bg-[url('./public/work-2.png')] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group border-[0.5px] border-gray-400 hover:shadow-lg transition-all duration-300"
+            >
+              <div
+                class="bg-gray-100 w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-4 sm:px-5 flex items-center justify-between duration-500 group-hover:bottom-7"
+              >
+                <div>
+                  <h2 class="font-semibold text-sm sm:text-base">Recipes App</h2>
+                  <p class="text-xs text-gray-700">CRUD Application</p>
+                </div>
+                <div
+                  class="border rounded-full border-black w-8 h-8 sm:w-9 sm:h-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-purple-300 transition"
+                >
+                  <img src="./public/send-icon.png" alt="" class="w-4 sm:w-5" />
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Project 3: Movie Search -->
+          <a
+            href="https://movie-lands.netlify.app/"
+            target="_blank"
+            class="block"
+          >
+            <div
+              class="aspect-square bg-[url('./public/work-3.png')] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group border-[0.5px] border-gray-400 hover:shadow-lg transition-all duration-300"
+            >
+              <div
+                class="bg-gray-100 w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-4 sm:px-5 flex items-center justify-between duration-500 group-hover:bottom-7"
+              >
+                <div>
+                  <h2 class="font-semibold text-sm sm:text-base">Movie Search</h2>
+                  <p class="text-xs text-gray-700">Web Application</p>
+                </div>
+                <div
+                  class="border rounded-full border-black w-8 h-8 sm:w-9 sm:h-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-purple-300 transition"
+                >
+                  <img src="./public/send-icon.png" alt="" class="w-4 sm:w-5" />
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <!-- Project 4: Class Programme -->
+          <a
+            href="https://github.com/SGMohan/Zen-Class-Programme-MongoDB.git"
+            target="_blank"
+            class="block"
+          >
+            <div
+              class="aspect-square bg-[url('./public/work-4.png')] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group border-[0.5px] border-gray-400 hover:shadow-lg transition-all duration-300"
+            >
+              <div
+                class="bg-gray-100 w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-4 sm:px-5 flex items-center justify-between duration-500 group-hover:bottom-7"
+              >
+                <div>
+                  <h2 class="font-semibold text-sm sm:text-base">
+                    Class Programme
+                  </h2>
+                  <p class="text-xs text-gray-700">Database</p>
+                </div>
+                <div
+                  class="border rounded-full border-black w-8 h-8 sm:w-9 sm:h-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-purple-300 transition"
+                >
+                  <img src="./public/send-icon.png" alt="" class="w-4 sm:w-5" />
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div>
+          <a
+            href="https://github.com/SGMohan"
+            target="_blank"
+            class="w-max flex items-center justify-center gap-2 text-gray-700 border-[0.5px] border-gray-700 rounded-full py-3 px-8 sm:px-10 mx-auto my-12 sm:my-20 hover:bg-[#fcf4ff] duration-500 hover:shadow-md transition"
+            >Show more
+            <img src="./public/right-arrow-bold.png" alt="" class="w-4" />
+          </a>
+        </div>
+      </div>
+
+      <!-- Contact Section -->
+      <div
+        id="contact"
+        class="w-full px-4 sm:px-6 md:px-[8%] lg:px-[12%] py-10 md:py-16 scroll-mt-20 bg-[url('./public/footer-bg-color.png')] bg-no-repeat bg-[length:90%_auto] bg-center"
+      >
+        <h4 class="text-center mb-2 text-lg text-gray-500 font-ovo">
+          Connect with me
+        </h4>
+        <h2 class="text-center text-4xl sm:text-5xl font-medium font-ovo">
+          Get in Touch
+        </h2>
+        <p
+          class="text-center max-w-2xl mx-auto mt-5 mb-8 sm:mb-12 text-gray-600 font-ovo"
+        >
+          I'd love to hear from you! If you have questions, comments or feedback,
+          please use the form below.
+        </p>
+
+        <form method="POST" action="https://api.web3forms.com/submit"
+        
+        class="max-w-2xl mx-auto">
+
+         <input type="hidden" name="access_key" value="0061a27b-4606-4af5-8222-a3536e4af81d">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-8 sm:mt-10 mb-6 sm:mb-8">
+      <input
+        type="text"
+        name="name"
+        placeholder="Enter your name"
+        class="flex-1 p-3 outline-none border-[0.5px] border-gray-400 rounded-md bg-white"
+        required
       />
-      <h3 class="flex items-end gap-2 text-xl md:text-2xl mb-3 font-ovo">
-        Hi, I'm Mohan
-        <img src="./public/hand-icon.png" alt="" class="w-5 sm:w-6" />
-      </h3>
-      <h1 class="text-4xl sm:text-5xl lg:text-[66px] font-medium font-ovo">
-        full stack developer
-      </h1>
-      <p class="max-w-2xl mx-auto text-gray-600 font-ovo">
-        I am a MERN stack developer with a passion for creating dynamic and
-        responsive web applications.
-      </p>
-
-      <div class="flex flex-col sm:flex-row items-center gap-4 mt-6">
-        <a
-          href="#contact"
-          class="px-8 sm:px-10 py-3 border rounded-full bg-gradient-to-r from-[#b820e6] to-[#da7d20] text-white flex items-center gap-2 hover:shadow-md transition"
-          >Contact me
-          <img
-            src="./public/right-arrow-white.png"
-            alt="right-arrow-icon"
-            class="w-4"
-        /></a>
-
-        <a
-          href="https://drive.google.com/file/d/1hEXjvkl2_cpntEh2dhST2o7sBlE3b-j5/view?usp=drive_link"
-          download
-          class="px-8 sm:px-10 py-3 border rounded-full border-gray-500 bg-white flex items-center gap-2 hover:bg-gray-50 transition"
-          >My Resume
-          <img src="./public/download-icon.png" alt="download-icon" class="w-4"
-        /></a>
-      </div>
+      <input
+        type="email"
+        name="email"
+        placeholder="Enter your email"
+        class="flex-1 p-3 outline-none border-[0.5px] border-gray-400 rounded-md bg-white"
+        required
+      />
     </div>
 
-    <!-- About Me Section -->
-    <div
-      id="about"
-      class="w-full px-4 sm:px-6 md:px-[8%] lg:px-[12%] py-10 md:py-16 scroll-mt-20"
-    >
-      <h4 class="text-center mb-2 text-lg text-gray-500 font-ovo">
-        Introduction
-      </h4>
-      <h2 class="text-center text-4xl sm:text-5xl font-medium font-ovo">
-        About me
-      </h2>
-
-      <div
-        class="flex w-full flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 xl:gap-20 my-12 lg:my-20"
-      >
-        <div class="max-w-max mx-auto relative">
-          <img
-            src="./public/profile10-removebg-preview.png"
-            alt="profile-pic"
-            class="w-56 sm:w-64 md:w-80 rounded-3xl max-w-none"
-          />
-          <div
-            class="bg-white w-1/2 aspect-square absolute right-0 bottom-0 rounded-full translate-x-1/4 translate-y-1/3 shadow-[0_4px_55px_rgba(149,0,162,0.15)] flex items-center justify-center"
-          >
-            <img
-              src="./public/circular-text.png"
-              alt=""
-              class="rounded-full animate-spin-slow"
-            />
-            <img
-              src="./public/profile2.jpg"
-              alt=""
-              class="w-1/4 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-            />
-          </div>
-        </div>
-        <div class="flex-1 w-full max-w-2xl lg:max-w-none mt-8">
-          <p class="mb-8 max-w-2xl text-gray-600 font-ovo">
-            I am a Full-Stack Developer specializing in the MERN stack, with
-            hands-on experience in building scalable web applications, REST
-            APIs, and cloud-based solutions. I have experience in developing
-            user-friendly interfaces and optimizing application performance.
-          </p>
-
-          <ul
-            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-2xl"
-          >
-            <li
-              class="border-[0.5px] border-gray-400 rounded-xl p-4 sm:p-6 cursor-pointer hover:bg-[#fcf4ff] hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000]"
-            >
-              <img
-                src="./public/code-icon.png"
-                alt="icon"
-                class="w-6 sm:w-7 mt-3"
-              />
-              <h3 class="my-3 sm:my-4 font-semibold text-gray-700">
-                Languages
-              </h3>
-              <p class="text-gray-600 text-sm">
-                HTML, CSS, TailwindCSS, JavaScript, React Js, Node Js, Express
-                Js, MySQL, MongoDB
-              </p>
-            </li>
-
-            <li
-              class="border-[0.5px] border-gray-400 rounded-xl p-4 sm:p-6 cursor-pointer hover:bg-[#fcf4ff] hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000]"
-            >
-              <img
-                src="./public/edu-icon.png"
-                alt="icon"
-                class="w-6 sm:w-7 mt-3"
-              />
-              <h3 class="my-3 sm:my-4 font-semibold text-gray-700">
-                Education
-              </h3>
-              <p class="text-gray-600 text-sm break-words">
-                B.E in Electronics and Communication Engineering
-              </p>
-            </li>
-
-            <li
-              class="border-[0.5px] border-gray-400 rounded-xl p-4 sm:p-6 cursor-pointer hover:bg-[#fcf4ff] hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000]"
-            >
-              <img
-                src="./public/project-icon.png"
-                alt="icon"
-                class="w-6 sm:w-7 mt-3"
-              />
-              <h3 class="my-3 sm:my-4 font-semibold text-gray-700">Projects</h3>
-              <p class="text-gray-600 text-sm">Built more than 5 projects</p>
-            </li>
-          </ul>
-
-          <h4 class="my-6 text-gray-700 font-ovo">Tools i use</h4>
-
-          <ul class="flex items-center flex-wrap gap-3 sm:gap-5">
-            <li
-              class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500 hover:shadow-md"
-            >
-              <img src="./public/vscode.png" alt="tools" class="w-5 sm:w-6" />
-            </li>
-
-            <li
-              class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500 hover:shadow-md"
-            >
-              <img src="./public/mongodb.png" alt="tools" class="w-5 sm:w-6" />
-            </li>
-            <li
-              class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500 hover:shadow-md"
-            >
-              <img
-                src="./public/postman-original.svg"
-                alt="tools"
-                class="w-5 sm:w-6"
-              />
-            </li>
-            <li
-              class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500 hover:shadow-md"
-            >
-              <img src="./public/figma.png" alt="tools" class="w-5 sm:w-6" />
-            </li>
-            <li
-              class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500 hover:shadow-md"
-            >
-              <img src="./public/git.png" alt="tools" class="w-5 sm:w-6" />
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- Certificates Section -->
-    <div
-      id="skills"
-      class="w-full px-4 sm:px-6 md:px-[8%] lg:px-[12%] py-10 md:py-16 scroll-mt-20 mb-8"
-    >
-      <h4 class="text-center mb-2 text-lg text-gray-500 font-ovo">My Skills</h4>
-      <h2 class="text-center text-4xl sm:text-5xl font-medium font-ovo">
-        Certificates
-      </h2>
-      <p
-        class="text-center max-w-2xl mx-auto mt-5 mb-8 sm:mb-12 text-gray-600 font-ovo"
-      >
-        Here are some of my certifications that highlight my skills, continuous
-        learning, and expertise in web development.
-      </p>
-      <div
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 my-8 sm:my-10 gap-4 sm:gap-5"
-      >
-        <a
-          href="https://drive.google.com/file/d/1VWPplZnmg7X8rGu_dsu9n-qyaKSOfCWH/view?usp=sharing"
-          target="_blank"
-          class="border p-4 sm:p-6 rounded-lg border-gray-400 cursor-pointer hover:bg-[#fcf4ff] hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000] block"
-        >
-          <img
-            src="./public/certificate-2.png"
-            alt="Certificate 1"
-            class="w-full"
-          />
-        </a>
-
-        <a
-          href="https://drive.google.com/file/d/1TckC-o7uptoX4n-61YjnvpMEfUJ5P8et/view?usp=sharing"
-          target="_blank"
-          class="border p-4 sm:p-6 rounded-lg border-gray-400 cursor-pointer hover:bg-[#fcf4ff] hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000] block"
-        >
-          <img
-            src="./public/certificate-3.png"
-            alt="Certificate 2"
-            class="w-full"
-          />
-        </a>
-
-        <a
-          href="https://drive.google.com/file/d/1fAWp6seLYu5ZaBqCyRiPA91YRk8RIpMT/view?usp=sharing"
-          target="_blank"
-          class="border p-4 sm:p-6 rounded-lg border-gray-400 cursor-pointer hover:bg-[#fcf4ff] hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000] block"
-        >
-          <img
-            src="./public/certificate-1.png"
-            alt="Certificate 3"
-            class="w-full"
-          />
-        </a>
-      </div>
-    </div>
-
-    <!-- My Work Section -->
-    <div
-      id="work"
-      class="w-full px-4 sm:px-6 md:px-[8%] lg:px-[12%] py-10 md:py-16 scroll-mt-20"
-    >
-      <h4 class="text-center mb-2 text-lg text-gray-500 font-ovo">
-        My portfolio
-      </h4>
-      <h2 class="text-center text-4xl sm:text-5xl font-medium font-ovo">
-        My latest Work
-      </h2>
-      <p
-        class="text-center max-w-2xl mx-auto mt-5 mb-8 sm:mb-12 text-gray-600 font-ovo"
-      >
-        Welcome to my web development portfolio! Explore a collection of
-        projects showcasing my expertise in front-end and back-end development.
-      </p>
-
-      <div
-        class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-6 sm:gap-8 mb-8 sm:mb-12"
-      >
-        <!-- Project 1: Table Booking -->
-        <a href="https://dinearea.netlify.app/" target="_blank" class="block">
-          <div
-            class="aspect-square bg-[url('./public/work-1.png')] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group border-[0.5px] border-gray-400 hover:shadow-lg transition-all duration-300"
-          >
-            <div
-              class="bg-gray-100 w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-4 sm:px-5 flex items-center justify-between duration-500 group-hover:bottom-7"
-            >
-              <div>
-                <h2 class="font-semibold text-sm sm:text-base">
-                  Table Booking
-                </h2>
-                <p class="text-xs text-gray-700">Web Application</p>
-              </div>
-              <div
-                class="border rounded-full border-black w-8 h-8 sm:w-9 sm:h-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-purple-300 transition"
-              >
-                <img src="./public/send-icon.png" alt="" class="w-4 sm:w-5" />
-              </div>
-            </div>
-          </div>
-        </a>
-
-        <!-- Project 2: Recipes App -->
-        <a
-          href="https://github.com/SGMohan/Recipes_App.git"
-          target="_blank"
-          class="block"
-        >
-          <div
-            class="aspect-square bg-[url('./public/work-2.png')] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group border-[0.5px] border-gray-400 hover:shadow-lg transition-all duration-300"
-          >
-            <div
-              class="bg-gray-100 w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-4 sm:px-5 flex items-center justify-between duration-500 group-hover:bottom-7"
-            >
-              <div>
-                <h2 class="font-semibold text-sm sm:text-base">Recipes App</h2>
-                <p class="text-xs text-gray-700">CRUD Application</p>
-              </div>
-              <div
-                class="border rounded-full border-black w-8 h-8 sm:w-9 sm:h-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-purple-300 transition"
-              >
-                <img src="./public/send-icon.png" alt="" class="w-4 sm:w-5" />
-              </div>
-            </div>
-          </div>
-        </a>
-
-        <!-- Project 3: Movie Search -->
-        <a
-          href="https://movie-lands.netlify.app/"
-          target="_blank"
-          class="block"
-        >
-          <div
-            class="aspect-square bg-[url('./public/work-3.png')] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group border-[0.5px] border-gray-400 hover:shadow-lg transition-all duration-300"
-          >
-            <div
-              class="bg-gray-100 w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-4 sm:px-5 flex items-center justify-between duration-500 group-hover:bottom-7"
-            >
-              <div>
-                <h2 class="font-semibold text-sm sm:text-base">Movie Search</h2>
-                <p class="text-xs text-gray-700">Web Application</p>
-              </div>
-              <div
-                class="border rounded-full border-black w-8 h-8 sm:w-9 sm:h-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-purple-300 transition"
-              >
-                <img src="./public/send-icon.png" alt="" class="w-4 sm:w-5" />
-              </div>
-            </div>
-          </div>
-        </a>
-
-        <!-- Project 4: Class Programme -->
-        <a
-          href="https://github.com/SGMohan/Zen-Class-Programme-MongoDB.git"
-          target="_blank"
-          class="block"
-        >
-          <div
-            class="aspect-square bg-[url('./public/work-4.png')] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group border-[0.5px] border-gray-400 hover:shadow-lg transition-all duration-300"
-          >
-            <div
-              class="bg-gray-100 w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-4 sm:px-5 flex items-center justify-between duration-500 group-hover:bottom-7"
-            >
-              <div>
-                <h2 class="font-semibold text-sm sm:text-base">
-                  Class Programme
-                </h2>
-                <p class="text-xs text-gray-700">Database</p>
-              </div>
-              <div
-                class="border rounded-full border-black w-8 h-8 sm:w-9 sm:h-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-purple-300 transition"
-              >
-                <img src="./public/send-icon.png" alt="" class="w-4 sm:w-5" />
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div>
-        <a
-          href="https://github.com/SGMohan"
-          target="_blank"
-          class="w-max flex items-center justify-center gap-2 text-gray-700 border-[0.5px] border-gray-700 rounded-full py-3 px-8 sm:px-10 mx-auto my-12 sm:my-20 hover:bg-[#fcf4ff] duration-500 hover:shadow-md transition"
-          >Show more
-          <img src="./public/right-arrow-bold.png" alt="" class="w-4" />
-        </a>
-      </div>
-    </div>
-
-    <!-- Contact Section -->
-    <div
-      id="contact"
-      class="w-full px-4 sm:px-6 md:px-[8%] lg:px-[12%] py-10 md:py-16 scroll-mt-20 bg-[url('./public/footer-bg-color.png')] bg-no-repeat bg-[length:90%_auto] bg-center"
-    >
-      <h4 class="text-center mb-2 text-lg text-gray-500 font-ovo">
-        Connect with me
-      </h4>
-      <h2 class="text-center text-4xl sm:text-5xl font-medium font-ovo">
-        Get in Touch
-      </h2>
-      <p
-        class="text-center max-w-2xl mx-auto mt-5 mb-8 sm:mb-12 text-gray-600 font-ovo"
-      >
-        I'd love to hear from you! If you have questions, comments or feedback,
-        please use the form below.
-      </p>
-
-      <form action="https://formspree.io/f/xgvnyweg"
-      method="POST"
-      class="max-w-2xl mx-auto">
-
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-8 sm:mt-10 mb-6 sm:mb-8">
-    <input
-      type="text"
-      name="name"
-      placeholder="Enter your name"
-      class="flex-1 p-3 outline-none border-[0.5px] border-gray-400 rounded-md bg-white"
+    <textarea
+      name="message"
+      rows="6"
+      placeholder="Enter your message"
+      class="w-full p-4 outline-none border-[0.5px] border-gray-400 rounded-md bg-white mb-6"
       required
-    />
-    <input
-      type="email"
-      name="email"
-      placeholder="Enter your email"
-      class="flex-1 p-3 outline-none border-[0.5px] border-gray-400 rounded-md bg-white"
-      required
-    />
-  </div>
+    ></textarea>
 
-  <textarea
-    name="message"
-    rows="6"
-    placeholder="Enter your message"
-    class="w-full p-4 outline-none border-[0.5px] border-gray-400 rounded-md bg-white mb-6"
-    required
-  ></textarea>
 
-  <button
-    type="submit"
-    class="py-3 px-8 w-max flex items-center justify-between gap-2 bg-black/80 text-white rounded-full mx-auto hover:bg-black duration-500 cursor-pointer"
-  >
-    Submit now
-    <img src="./public/right-arrow-white.png" alt="" class="w-4" />
-  </button>
-</form>
-
-<!-- Toast container -->
-<div id="toast"
-     class="fixed bottom-10 right-5 bg-green-800/80 text-white px-4 py-2 rounded-lg shadow-lg opacity-0 translate-y-4 pointer-events-none transition-all duration-500">
-  Catch you soon..!👍🏻
-</div>
-
+    <button
+      type="submit"
+      class="py-3 px-8 w-max flex items-center justify-between gap-2 bg-black/80 text-white rounded-full mx-auto hover:bg-black duration-500 cursor-pointer"
+    >
+      Submit now
+      <img src="./public/right-arrow-white.png" alt="" class="w-4" />
+    </button>
+  </form>
+    </main>
 
     <!-- Footer -->
-    <div class="mt-12 sm:mt-20">
+    <div class="mt-12">
       <div class="text-center">
-        <img src="./public/logo.png" alt="" class="w-28 sm:w-36 mx-auto mb-2" />
+        <img src="./public/logo.png" alt="" class="w-28 mx-auto mb-2" />
         <div class="w-max flex items-center gap-2 mx-auto text-gray-600">
-          <img src="./public/mail_icon.png" alt="" class="w-5 sm:w-6" />
+          <img src="./public/mail_icon.png" alt="" class="w-5 " />
           sgmohan.dev@gmail.com
         </div>
       </div>
       <div
-        class="text-center sm:flex items-center justify-between border-t border-gray-400 mx-4 sm:mx-[10%] mt-8 sm:mt-12 py-6"
+        class="text-center sm:flex items-center justify-between border-t border-gray-400 mx-[10%] my-12 py-6 "
       >
         <p class="text-center text-gray-600">
           © 2025 Mohan S G. All rights reserved.
         </p>
         <ul
-          class="flex items-center gap-6 sm:gap-10 justify-center mt-4 sm:mt-0"
+          class="flex items-center gap-10 justify-center mt-4 sm:mt-0"
         >
           <li>
             <a href="https://instagram.com/__sree_46__" target="_blank"
