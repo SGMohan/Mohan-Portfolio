@@ -1,10 +1,24 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <title>Mohan_Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              darkTheme: '#11001F',
+              lightHover: '#fcf4ff',
+              darkHover: '#2a004a',
+            }
+          }
+        }
+      }
+    </script>
+    <title>Mohan Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="shortcut icon" href="./icon/favicon.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,6 +36,7 @@
           transform: rotate(360deg);
         }
       }
+
 
       .animate-spin-slow {
         animation: spin-slow 6s linear infinite;
@@ -43,11 +58,62 @@
       main {
         flex: 1;
       }
+
+      /* Global smooth transitions (fast) */
+      html, body, * {
+        transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+      }
+
+      /* Nav link color for light/dark theme (exact navbar pattern) */
+      nav a, #sideMenu a {
+        color: #1f2937;
+        transition: color 0.2s ease;
+      }
+
+      nav a:hover, #sideMenu a:hover {
+        color: #a855f7;
+      }
+
+      html.dark nav a,
+      html.dark #sideMenu a {
+        color: #ffffff;
+      }
+
+      html.dark nav a:hover,
+      html.dark #sideMenu a:hover {
+        color: #c4b5fd;
+      }
+
+      /* Since nav and hero are window important, ensure meta style is consistent */
+      html.dark body {
+        background-color: #11001F;
+        color: white;
+      }
+
+      html.dark main {
+        background-color: transparent;
+      }
     </style>
+
+    <script>
+      (function () {
+        try {
+          const saved = localStorage.getItem("theme");
+          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+          if (saved === "dark" || (!saved && prefersDark)) {
+            document.documentElement.classList.add("dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
-  <body class="overflow-x-hidden font-outfit leading-8">
+  <body class="overflow-x-hidden font-outfit leading-8 bg-white text-gray-900 dark:bg-darkTheme dark:text-white transition-all duration-300">
+
+
     <!-- Background decoration -->
-    <div class="fixed top-0 right-0 w-full md:w-11/12 -z-10 translate-y-[-80%]">
+    <div class="fixed top-0 right-0 w-full md:w-11/12 -z-10 translate-y-[-80%] dark:hidden">
+
       <img
         src="./public/header-bg-color.png"
         alt="bg-transition"
@@ -57,59 +123,49 @@
 
     <!-- Navigation -->
     <nav
-      class="w-full fixed px-4 sm:px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 font-ovo"
+      class="w-full fixed px-4 sm:px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 font-ovo transition-all duration-300"
     >
+      <!-- Logo -->
       <img
         src="./public/logo.png"
         alt="Logo"
-        class="w-24 sm:w-28 cursor-pointer"
+        class="w-24 sm:w-28 cursor-pointer dark:invert-[100%] dark:hue-rotate-[180deg]"
       />
 
       <!-- Desktop Menu -->
       <ul
-        class="hidden md:flex items-center gap-4 lg:gap-8 rounded-full px-8 lg:px-12 py-3"
+        class="hidden md:flex items-center gap-3 lg:gap-8 rounded-full px-6 lg:px-12 py-3 absolute left-1/2 -translate-x-1/2 transition-all duration-300 dark:border-white/50 whitespace-nowrap"
       >
-        <li>
-          <a href="#top">Home</a>
-        </li>
-        <li>
-          <a href="#about">About me</a>
-        </li>
-        <li>
-          <a href="#skills">Skills</a>
-        </li>
-        <li>
-          <a href="#work">My Work</a>
-        </li>
-        <li>
-          <a href="#contact">Contact me</a>
-        </li>
+        <li><a href="#top" class="hover:text-purple-500 duration-300">Home</a></li>
+        <li><a href="#about" class="hover:text-purple-500 duration-300">About me</a></li>
+        <li><a href="#experience" class="hover:text-purple-500 duration-300">Experience</a></li>
+        <li><a href="#skills" class="hover:text-purple-500 duration-300">Skills</a></li>
+        <li><a href="#work" class="hover:text-purple-500 duration-300">My Work</a></li>
       </ul>
 
       <!-- Navigation Actions -->
-      <div class="flex items-center gap-3">
-        <div
-          class="w-10 h-full object-cover rounded-full border border-gray-300 bg-white"
-        >
-          <img
-            src="./public/profile.jpg"
-            alt=""
-            class="w-10 p-2 rounded-full"
-          />
-        </div>
+      <div class="flex items-center gap-6">
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" onclick="toggleTheme()" class="w-6 cursor-pointer">
+          <img src="./public/sun_icon.png" class="w-full hidden dark:block" />
+          <img src="./public/moon_icon.png" class="w-full dark:hidden" />
+        </button>
+
+
         <a
           href="#contact"
-          class="hidden lg:flex items-center gap-3 px-8 lg:px-10 py-2.5 border border-gray-300 rounded-full font-ovo"
+          class="hidden lg:flex items-center gap-3 px-8 lg:px-10 py-2.5 border border-gray-300 rounded-full font-ovo dark:border-white/50"
         >
           Contact
-          <img src="./public/arrow-icon.png" alt="arrow-icon" class="w-3" />
+          <img src="./public/arrow-icon.png" alt="arrow-icon" class="w-3 dark:hidden" />
+          <img src="./public/arrow-icon-dark.png" alt="arrow-icon" class="w-3 hidden dark:block" />
         </a>
 
         <button class="block md:hidden" onclick="openMenu()">
           <img
             src="./public/menu-black.png"
             alt="menu-icon"
-            class="w-6 cursor-pointer"
+            class="w-6 cursor-pointer dark:invert"
           />
         </button>
       </div>
@@ -117,31 +173,22 @@
       <!-- Mobile Menu -->
       <ul
         id="sideMenu"
-        class="flex md:hidden flex-col gap-5 py-20 px-8 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 font-ovo"
+        class="flex md:hidden flex-col gap-5 py-20 px-8 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 font-ovo dark:bg-darkTheme dark:text-white"
       >
         <div class="absolute top-6 right-6" onclick="closeMenu()">
           <img
             src="./public/close-black.png"
             alt="close-icon"
-            class="w-5 cursor-pointer"
+            class="w-5 cursor-pointer dark:invert"
           />
         </div>
 
-        <li>
-          <a href="#top" onclick="closeMenu()">Home</a>
-        </li>
-        <li>
-          <a href="#about" onclick="closeMenu()">About me</a>
-        </li>
-        <li>
-          <a href="#skills" onclick="closeMenu()">Skills</a>
-        </li>
-        <li>
-          <a href="#work" onclick="closeMenu()">Projects</a>
-        </li>
-        <li>
-          <a href="#contact" onclick="closeMenu()">Contact me</a>
-        </li>
+        <li><a href="#top" onclick="closeMenu()">Home</a></li>
+        <li><a href="#about" onclick="closeMenu()">About me</a></li>
+        <li><a href="#experience" onclick="closeMenu()">Experience</a></li>
+        <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
+        <li><a href="#work" onclick="closeMenu()">Projects</a></li>
+        <li><a href="#contact" onclick="closeMenu()">Contact me</a></li>
       </ul>
     </nav>
 
@@ -162,7 +209,7 @@
         <h1 class="text-4xl sm:text-5xl lg:text-[66px] font-medium font-ovo">
           full stack developer
         </h1>
-        <p class="max-w-2xl mx-auto text-gray-600 font-ovo">
+        <p class="max-w-2xl mx-auto text-gray-600 font-ovo dark:text-white/80">
           I am a MERN stack developer with a passion for creating dynamic and
           responsive web applications.
         </p>
@@ -181,9 +228,9 @@
           <a
             href="https://drive.google.com/file/d/1hEXjvkl2_cpntEh2dhST2o7sBlE3b-j5/view?usp=drive_link"
             download
-            class="px-8 sm:px-10 py-3 border rounded-full border-gray-500 bg-white flex items-center gap-2 hover:bg-gray-50 transition"
+            class="px-8 sm:px-10 py-3 border rounded-full border-gray-500 bg-white flex items-center gap-2 text-gray-700 hover:bg-gray-50 transition dark:bg-transparent dark:text-white dark:border-white/50 dark:hover:bg-darkHover"
             >My Resume
-            <img src="./public/download-icon.png" alt="download-icon" class="w-4"
+            <img src="./public/download-icon.png" alt="download-icon" class="w-4 dark:invert"
           /></a>
         </div>
       </div>
@@ -193,7 +240,7 @@
         id="about"
         class="w-full px-4 sm:px-6 md:px-[8%] lg:px-[12%] py-10 md:py-16 scroll-mt-20"
       >
-        <h4 class="text-center mb-2 text-lg text-gray-500 font-ovo">
+        <h4 class="text-center mb-2 text-lg text-gray-500 font-ovo dark:text-white/60">
           Introduction
         </h4>
         <h2 class="text-center text-4xl sm:text-5xl font-medium font-ovo">
@@ -210,7 +257,7 @@
               class="w-56 sm:w-64 md:w-80 rounded-3xl max-w-none"
             />
             <div
-              class="bg-white w-1/2 aspect-square absolute right-0 bottom-0 rounded-full translate-x-1/4 translate-y-1/3 shadow-[0_4px_55px_rgba(149,0,162,0.15)] flex items-center justify-center"
+              class="bg-white w-1/2 aspect-square absolute right-0 bottom-0 rounded-full translate-x-1/4 translate-y-1/3 shadow-[0_4px_55px_rgba(149,0,162,0.15)] flex items-center justify-center dark:bg-darkTheme dark:shadow-[0_4px_55px_rgba(255,255,255,0.1)]"
             >
               <img
                 src="./public/circular-text.png"
@@ -225,7 +272,7 @@
             </div>
           </div>
           <div class="flex-1 w-full max-w-2xl lg:max-w-none mt-8">
-            <p class="mb-8 max-w-2xl text-gray-600 font-ovo">
+            <p class="mb-8 max-w-2xl text-gray-600 font-ovo dark:text-white/80">
               I am a Full-Stack Developer specializing in the MERN stack, with
               hands-on experience in building scalable web applications, REST
               APIs, and cloud-based solutions. I have experience in developing
@@ -236,56 +283,56 @@
               class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-2xl"
             >
               <li
-                class="border-[0.5px] border-gray-400 rounded-xl p-4 sm:p-6 cursor-pointer hover:bg-[#fcf4ff] hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000]"
+                class="border-[0.5px] border-gray-400 rounded-xl p-4 sm:p-6 cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000] dark:border-white/20 dark:hover:bg-darkHover dark:hover:shadow-[4px_4px_0_#fff]"
               >
                 <img
                   src="./public/code-icon.png"
                   alt="icon"
-                  class="w-6 sm:w-7 mt-3"
+                  class="w-6 sm:w-7 mt-3 dark:invert"
                 />
-                <h3 class="my-3 sm:my-4 font-semibold text-gray-700">
+                <h3 class="my-3 sm:my-4 font-semibold text-gray-700 dark:text-white">
                   Languages
                 </h3>
-                <p class="text-gray-600 text-sm">
+                <p class="text-gray-600 text-sm dark:text-white/70">
                   HTML, CSS, TailwindCSS, JavaScript, React Js, Node Js, Express
                   Js, MySQL, MongoDB
                 </p>
               </li>
 
               <li
-                class="border-[0.5px] border-gray-400 rounded-xl p-4 sm:p-6 cursor-pointer hover:bg-[#fcf4ff] hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000]"
+                class="border-[0.5px] border-gray-400 rounded-xl p-4 sm:p-6 cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000] dark:border-white/20 dark:hover:bg-darkHover dark:hover:shadow-[4px_4px_0_#fff]"
               >
                 <img
                   src="./public/edu-icon.png"
                   alt="icon"
-                  class="w-6 sm:w-7 mt-3"
+                  class="w-6 sm:w-7 mt-3 dark:invert"
                 />
-                <h3 class="my-3 sm:my-4 font-semibold text-gray-700">
+                <h3 class="my-3 sm:my-4 font-semibold text-gray-700 dark:text-white">
                   Education
                 </h3>
-                <p class="text-gray-600 text-sm break-words">
+                <p class="text-gray-600 text-sm break-words dark:text-white/70">
                   B.E in Electronics and Communication Engineering
                 </p>
               </li>
 
               <li
-                class="border-[0.5px] border-gray-400 rounded-xl p-4 sm:p-6 cursor-pointer hover:bg-[#fcf4ff] hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000]"
+                class="border-[0.5px] border-gray-400 rounded-xl p-4 sm:p-6 cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000] dark:border-white/20 dark:hover:bg-darkHover dark:hover:shadow-[4px_4px_0_#fff]"
               >
                 <img
                   src="./public/project-icon.png"
                   alt="icon"
-                  class="w-6 sm:w-7 mt-3"
+                  class="w-6 sm:w-7 mt-3 dark:invert"
                 />
-                <h3 class="my-3 sm:my-4 font-semibold text-gray-700">Projects</h3>
-                <p class="text-gray-600 text-sm">Built more than 5 projects</p>
+                <h3 class="my-3 sm:my-4 font-semibold text-gray-700 dark:text-white">Projects</h3>
+                <p class="text-gray-600 text-sm dark:text-white/70">Built more than 5 projects</p>
               </li>
             </ul>
 
-            <h4 class="my-6 text-gray-700 font-ovo">Tools i use</h4>
+            <h4 class="my-6 text-gray-700 font-ovo dark:text-white">Tools i use</h4>
 
             <ul class="flex items-center flex-wrap gap-3 sm:gap-5">
               <li
-                class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500 hover:shadow-md"
+                class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500 hover:shadow-md dark:border-white/20 dark:hover:bg-darkHover"
               >
                 <img src="./public/vscode.png" alt="tools" class="w-5 sm:w-6" />
               </li>
@@ -319,28 +366,72 @@
         </div>
       </div>
 
+      <!-- Experience Section -->
+      <div
+        id="experience"
+        class="w-full px-4 sm:px-6 md:px-[8%] lg:px-[12%] py-10 md:py-16 scroll-mt-20 mb-8"
+      >
+        <h4 class="text-center mb-2 text-lg text-gray-500 font-ovo dark:text-white/60">Experience</h4>
+        <h2 class="text-center text-4xl sm:text-5xl font-medium font-ovo">Internship Experience</h2>
+        <p class="text-center max-w-2xl mx-auto mt-5 mb-8 sm:mb-12 text-gray-600 dark:text-white/70 font-ovo">
+          3 months as Frontend Developer Intern at Nura9 Technologies, focusing on UI fixes, backend API integrations and Flutter mobile development.
+        </p>
+
+        <div
+          class="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 max-w-6xl mx-auto md:items-stretch"
+        >
+          <a
+            href="https://drive.google.com/file/d/1p6rL5GnlO1kP03rX97wDoD6LtR2FpoB4/view?usp=sharing"
+            target="_blank"
+            class="border p-4 sm:p-6 rounded-lg border-gray-400 cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000] block dark:border-white/20 dark:hover:bg-darkHover dark:hover:shadow-[4px_4px_0_#fff]"
+          >
+            <img
+              src="./public/certificate-4.png"
+              alt="Nura9 Internship Certificate"
+              class="w-full"
+            />
+          </a>
+
+          <div class="p-6 bg-transparent dark:bg-transparent flex flex-col justify-between h-full font-ovo">
+            <div>
+              <h3 class="text-2xl font-semibold text-black dark:text-white">Frontend Developer Intern</h3>
+
+              <p class="mt-3 text-gray-700 dark:text-gray-200">
+                Worked on improving UI quality and consistency by fixing design issues and building reusable components. Collaborated with the backend team to integrate REST APIs and enable seamless data flow. Contributed to Flutter mobile features and implemented real-time chat functionality using WebSockets.
+              </p>
+
+              <ul class="mt-4 list-disc list-inside text-gray-700 dark:text-gray-200 space-y-2">
+                <li>Reduced UI issue count by enhancing component reuse and consistency.</li>
+                <li>Completed backend API integration for dashboard and user modules.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
       <!-- Certificates Section -->
       <div
         id="skills"
         class="w-full px-4 sm:px-6 md:px-[8%] lg:px-[12%] py-10 md:py-16 scroll-mt-20 mb-8"
       >
-        <h4 class="text-center mb-2 text-lg text-gray-500 font-ovo">Skills</h4>
+        <h4 class="text-center mb-2 text-lg text-gray-500 font-ovo dark:text-white/60">Skills</h4>
         <h2 class="text-center text-4xl sm:text-5xl font-medium font-ovo">
           Certificates
         </h2>
         <p
-          class="text-center max-w-2xl mx-auto mt-5 mb-8 sm:mb-12 text-gray-600 font-ovo"
+          class="text-center max-w-2xl mx-auto mt-5 mb-8 sm:mb-12 text-gray-600 font-ovo dark:text-white/70"
         >
           Here are some of my certifications that highlight my skills, continuous
           learning, and expertise in web development.
         </p>
         <div
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 my-8 sm:my-10 gap-4 sm:gap-5"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 my-8 sm:my-10 gap-4 sm:gap-5 max-w-6xl mx-auto"
         >
           <a
-            href="https://drive.google.com/file/d/1VWPplZnmg7X8rGu_dsu9n-qyaKSOfCWH/view?usp=sharing"
+            href="https://drive.google.com/file/d/1fZVKi1mQ0-g6rbngHud3lry3Tt_ttRqf/view?usp=sharing"
             target="_blank"
-            class="border p-4 sm:p-6 rounded-lg border-gray-400 cursor-pointer hover:bg-[#fcf4ff] hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000] block"
+            class="border p-4 sm:p-6 rounded-lg border-gray-400 cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000] block dark:border-white/20 dark:hover:bg-darkHover dark:hover:shadow-[4px_4px_0_#fff]"
           >
             <img
               src="./public/certificate-2.png"
@@ -350,9 +441,9 @@
           </a>
 
           <a
-            href="https://drive.google.com/file/d/1TckC-o7uptoX4n-61YjnvpMEfUJ5P8et/view?usp=sharing"
+            href="https://drive.google.com/file/d/1zmecgvXB3TSj1B1vmeZmWhUR2Tzi33ju/view?usp=sharing"
             target="_blank"
-            class="border p-4 sm:p-6 rounded-lg border-gray-400 cursor-pointer hover:bg-[#fcf4ff] hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000] block"
+            class="border p-4 sm:p-6 rounded-lg border-gray-400 cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000] block dark:border-white/20 dark:hover:bg-darkHover dark:hover:shadow-[4px_4px_0_#fff]"
           >
             <img
               src="./public/certificate-3.png"
@@ -362,9 +453,9 @@
           </a>
 
           <a
-            href="https://drive.google.com/file/d/1fAWp6seLYu5ZaBqCyRiPA91YRk8RIpMT/view?usp=sharing"
+            href="https://drive.google.com/file/d/1BlFi_JnPcq2dSz5vRhdPGrKiuzMzW8Ei/view?usp=sharing"
             target="_blank"
-            class="border p-4 sm:p-6 rounded-lg border-gray-400 cursor-pointer hover:bg-[#fcf4ff] hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000] block"
+            class="border p-4 sm:p-6 rounded-lg border-gray-400 cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000] block dark:border-white/20 dark:hover:bg-darkHover dark:hover:shadow-[4px_4px_0_#fff]"
           >
             <img
               src="./public/certificate-1.png"
@@ -378,148 +469,92 @@
       <!-- My Work Section -->
       <div
         id="work"
-        class="w-full px-4 sm:px-6 md:px-[8%] lg:px-[12%] py-10 md:py-16 scroll-mt-20"
+        class="relative w-full px-4 sm:px-6 md:px-[8%] lg:px-[12%] py-10 md:py-16 scroll-mt-20"
       >
-        <h4 class="text-center mb-2 text-lg text-gray-500 font-ovo">
+        <h4 class="text-center mb-2 text-lg text-gray-500 font-ovo dark:text-white/60">
           Portfolio
         </h4>
         <h2 class="text-center text-4xl sm:text-5xl font-medium font-ovo">
           Latest Work
         </h2>
         <p
-          class="text-center max-w-2xl mx-auto mt-5 mb-8 sm:mb-12 text-gray-600 font-ovo"
+          class="text-center max-w-2xl mx-auto mt-5 mb-8 sm:mb-12 text-gray-600 font-ovo dark:text-white/70"
         >
           Welcome to my web development portfolio! Explore a collection of
           projects showcasing my expertise in front-end and back-end development.
         </p>
 
-        <div
-          class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-6 sm:gap-8 mb-8 sm:mb-12"
-        >
-          <!-- Project 1: Table Booking -->
-          <a href="https://dinearea.netlify.app/" target="_blank" class="block">
-            <div
-              class="aspect-square bg-[url('./public/work-1.png')] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group border-[0.5px] border-gray-400 hover:shadow-lg transition-all duration-300"
-            >
-              <div
-                class="bg-gray-100 w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-4 sm:px-5 flex items-center justify-between duration-500 group-hover:bottom-7"
-              >
-                <div>
-                  <h2 class="font-semibold text-sm sm:text-base">
-                    Table Booking
-                  </h2>
-                  <p class="text-xs text-gray-700">Web Application</p>
-                </div>
-                <div
-                  class="border rounded-full border-black w-8 h-8 sm:w-9 sm:h-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-purple-300 transition"
-                >
-                  <img src="./public/send-icon.png" alt="" class="w-4 sm:w-5" />
-                </div>
-              </div>
-            </div>
-          </a>
-
-          <!-- Project 2: Recipes App -->
-          <a
-            href="https://github.com/SGMohan/Recipes_App.git"
-            target="_blank"
-            class="block"
+        <div class="relative max-w-6xl mx-auto mb-8 sm:mb-12">
+          <div
+            id="projectShowcase"
+            class="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 md:items-stretch"
           >
-            <div
-              class="aspect-square bg-[url('./public/work-2.png')] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group border-[0.5px] border-gray-400 hover:shadow-lg transition-all duration-300"
-            >
-              <div
-                class="bg-gray-100 w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-4 sm:px-5 flex items-center justify-between duration-500 group-hover:bottom-7"
+            <div class="relative overflow-visible">
+              <a
+                id="projectImageLink"
+                href="#"
+                target="_blank"
+                class="border p-4 sm:p-6 rounded-lg border-gray-400 cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500 hover:shadow-[4px_4px_0_#000] block dark:border-white/20 dark:hover:bg-darkHover dark:hover:shadow-[4px_4px_0_#fff]"
               >
-                <div>
-                  <h2 class="font-semibold text-sm sm:text-base">Recipes App</h2>
-                  <p class="text-xs text-gray-700">CRUD Application</p>
-                </div>
-                <div
-                  class="border rounded-full border-black w-8 h-8 sm:w-9 sm:h-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-purple-300 transition"
-                >
-                  <img src="./public/send-icon.png" alt="" class="w-4 sm:w-5" />
-                </div>
-              </div>
+                <img
+                  id="projectImg"
+                  src="./public/project-1.png"
+                  alt="Project Image"
+                  class="w-full"
+                />
+              </a>
             </div>
-          </a>
 
-          <!-- Project 3: Movie Search -->
-          <a
-            href="https://movie-lands.netlify.app/"
-            target="_blank"
-            class="block"
-          >
-            <div
-              class="aspect-square bg-[url('./public/work-3.png')] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group border-[0.5px] border-gray-400 hover:shadow-lg transition-all duration-300"
-            >
-              <div
-                class="bg-gray-100 w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-4 sm:px-5 flex items-center justify-between duration-500 group-hover:bottom-7"
-              >
-                <div>
-                  <h2 class="font-semibold text-sm sm:text-base">Movie Search</h2>
-                  <p class="text-xs text-gray-700">Web Application</p>
-                </div>
-                <div
-                  class="border rounded-full border-black w-8 h-8 sm:w-9 sm:h-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-purple-300 transition"
-                >
-                  <img src="./public/send-icon.png" alt="" class="w-4 sm:w-5" />
-                </div>
-              </div>
-            </div>
-          </a>
+            <div class="px-6 py-4 bg-transparent dark:bg-transparent flex flex-col justify-between h-full font-ovo">
+              <div>
+                <h3 id="projectTitle" class="text-2xl lg:text-3xl font-semibold text-black dark:text-white">Restaurant Reservation Platform</h3>
+                <p id="projectDetails" class="mt-4 text-gray-700 dark:text-gray-200 leading-relaxed">A full-stack restaurant reservation system that allows users to browse restaurants, book tables, and manage reservations efficiently with real-time availability handling.</p>
 
-          <!-- Project 4: Class Programme -->
-          <a
-            href="https://github.com/SGMohan/Zen-Class-Programme-MongoDB.git"
-            target="_blank"
-            class="block"
-          >
-            <div
-              class="aspect-square bg-[url('./public/work-4.png')] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group border-[0.5px] border-gray-400 hover:shadow-lg transition-all duration-300"
-            >
-              <div
-                class="bg-gray-100 w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-4 sm:px-5 flex items-center justify-between duration-500 group-hover:bottom-7"
-              >
-                <div>
-                  <h2 class="font-semibold text-sm sm:text-base">
-                    Class Programme
-                  </h2>
-                  <p class="text-xs text-gray-700">Database</p>
-                </div>
-                <div
-                  class="border rounded-full border-black w-8 h-8 sm:w-9 sm:h-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-purple-300 transition"
-                >
-                  <img src="./public/send-icon.png" alt="" class="w-4 sm:w-5" />
-                </div>
+                <ul id="projectTools" class="mt-6 flex flex-wrap gap-3"></ul>
+              </div>
+
+              <div class="mt-8 flex flex-wrap items-center gap-4">
+                <a id="projectLive" href="https://dinearea.netlify.app/" target="_blank" class="px-8 py-2.5 bg-black text-white text-lg font-ovo rounded-full flex items-center gap-2 hover:bg-gray-800 transition dark:bg-white dark:text-black dark:hover:bg-gray-100">Live <img src="./public/right-arrow-white.png" alt="" class="w-4 dark:hidden" /><img src="./public/right-arrow.png" alt="" class="w-4 hidden dark:block" /></a>
+                <a id="projectGit" href="https://github.com/SGMohan" target="_blank" class="px-8 py-2.5 border border-gray-700 text-gray-700 text-lg font-ovo rounded-full flex items-center gap-2 hover:bg-lightHover transition dark:border-white dark:text-white dark:hover:bg-darkHover">Source Code <img src="./public/git.png" alt="" class="w-5 dark:invert" /></a>
               </div>
             </div>
-          </a>
+          </div>
+
+          <div class="flex lg:hidden justify-center items-center gap-4 mt-8">
+            <button id="prevProjectMobile" class="project-arrow w-12 h-12 flex items-center justify-center bg-white dark:bg-darkTheme border border-gray-300 dark:border-white/30 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition hover:scale-110 shadow-sm" aria-label="Previous project">
+              <img src="./public/project-arrow.png" alt="" class="w-6 -rotate-180 dark:invert" />
+            </button>
+            <button id="nextProjectMobile" class="project-arrow w-12 h-12 flex items-center justify-center bg-white dark:bg-darkTheme border border-gray-300 dark:border-white/30 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition hover:scale-110 shadow-sm" aria-label="Next project">
+              <img src="./public/project-arrow.png" alt="" class="w-6 dark:invert" />
+            </button>
+          </div>
         </div>
-        <div>
-          <a
-            href="https://github.com/SGMohan"
-            target="_blank"
-            class="w-max flex items-center justify-center gap-2 text-gray-700 border-[0.5px] border-gray-700 rounded-full py-3 px-8 sm:px-10 mx-auto my-12 sm:my-20 hover:bg-[#fcf4ff] duration-500 hover:shadow-md transition"
-            >Show more
-            <img src="./public/right-arrow-bold.png" alt="" class="w-4" />
-          </a>
+
+        <button id="prevProject" class="hidden lg:flex project-arrow absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 items-center justify-center bg-white dark:bg-darkTheme border border-gray-300 dark:border-white/30 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition hover:scale-110 shadow-sm" aria-label="Previous project">
+          <img src="./public/project-arrow.png" alt="" class="w-6 -rotate-180 dark:invert" />
+        </button>
+        <button id="nextProject" class="hidden lg:flex project-arrow absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 items-center justify-center bg-white dark:bg-darkTheme border border-gray-300 dark:border-white/30 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition hover:scale-110 shadow-sm" aria-label="Next project">
+          <img src="./public/project-arrow.png" alt="" class="w-6 dark:invert" />
+        </button>
+
+        <div class="hidden lg:flex justify-center">
+          <a href="https://github.com/SGMohan" target="_blank" class="w-max flex items-center justify-center gap-2 text-gray-700 border-[0.5px] border-gray-700 rounded-full py-3 px-8 sm:px-10 mx-auto my-12 sm:my-20 hover:bg-lightHover duration-500 hover:shadow-md transition dark:text-white dark:border-white dark:hover:bg-darkHover">Show more <img src="./public/right-arrow-bold.png" alt="" class="w-4 dark:invert" /></a>
         </div>
       </div>
 
       <!-- Contact Section -->
       <div
         id="contact"
-        class="w-full px-4 sm:px-6 md:px-[8%] lg:px-[12%] py-10 md:py-16 scroll-mt-20 bg-[url('./public/footer-bg-color.png')] bg-no-repeat bg-[length:90%_auto] bg-center"
+        class="w-full px-4 sm:px-6 md:px-[8%] lg:px-[12%] py-10 md:py-16 scroll-mt-20 bg-[url('./public/footer-bg-color.png')] bg-no-repeat bg-[length:90%_auto] bg-center dark:bg-none"
       >
-        <h4 class="text-center mb-2 text-lg text-gray-500 font-ovo">
+        <h4 class="text-center mb-2 text-lg text-gray-500 font-ovo dark:text-white/60">
           Connect with me
         </h4>
         <h2 class="text-center text-4xl sm:text-5xl font-medium font-ovo">
           Get in Touch
         </h2>
         <p
-          class="text-center max-w-2xl mx-auto mt-5 mb-8 sm:mb-12 text-gray-600 font-ovo"
+          class="text-center max-w-2xl mx-auto mt-5 mb-8 sm:mb-12 text-gray-600 font-ovo dark:text-white/70"
         >
           I'd love to hear from you! If you have questions, comments or feedback,
           please use the form below.
@@ -536,14 +571,14 @@
         type="text"
         name="name"
         placeholder="Enter your name"
-        class="flex-1 p-3 outline-none border-[0.5px] border-gray-400 rounded-md bg-white"
+        class="flex-1 p-3 outline-none border-[0.5px] border-gray-400 rounded-md bg-white dark:bg-darkHover dark:border-white/20 dark:text-white"
         required
       />
       <input
         type="email"
         name="email"
         placeholder="Enter your email"
-        class="flex-1 p-3 outline-none border-[0.5px] border-gray-400 rounded-md bg-white"
+        class="flex-1 p-3 outline-none border-[0.5px] border-gray-400 rounded-md bg-white dark:bg-darkHover dark:border-white/20 dark:text-white"
         required
       />
     </div>
@@ -552,17 +587,17 @@
       name="message"
       rows="6"
       placeholder="Enter your message"
-      class="w-full p-4 outline-none border-[0.5px] border-gray-400 rounded-md bg-white mb-6"
+      class="w-full p-4 outline-none border-[0.5px] border-gray-400 rounded-md bg-white mb-6 dark:bg-darkHover dark:border-white/20 dark:text-white"
       required
     ></textarea>
 
 
     <button
       type="submit"
-      class="py-3 px-8 w-max flex items-center justify-between gap-2 bg-black/80 text-white rounded-full mx-auto hover:bg-black duration-500 cursor-pointer"
+      class="py-3 px-8 w-max flex items-center justify-between gap-2 bg-black/80 text-white rounded-full mx-auto hover:bg-black duration-500 cursor-pointer dark:bg-white dark:text-black dark:hover:bg-white/90"
     >
       Submit now
-      <img src="./public/right-arrow-white.png" alt="" class="w-4" />
+      <img src="./public/right-arrow-white.png" alt="" class="w-4 dark:invert" />
     </button>
   </form>
     </main>
@@ -570,17 +605,18 @@
     <!-- Footer -->
     <div class="mt-12">
       <div class="text-center">
-        <img src="./public/logo.png" alt="" class="w-28 mx-auto mb-2" />
-        <div class="w-max flex items-center gap-2 mx-auto text-gray-600">
-          <img src="./public/mail_icon.png" alt="" class="w-5 " />
+        <img src="./public/logo.png" alt="" class="w-28 mx-auto mb-2 dark:invert-[100%] dark:hue-rotate-[180deg]" />
+
+        <div class="w-max flex items-center gap-2 mx-auto text-gray-600 dark:text-white/70">
+          <img src="./public/mail_icon.png" alt="" class="w-5 dark:invert" />
           sgmohan.dev@gmail.com
         </div>
       </div>
       <div
         class="text-center sm:flex items-center justify-between border-t border-gray-400 mx-[10%] my-12 py-6 "
       >
-        <p class="text-center text-gray-600">
-          © 2025 Mohan S G. All rights reserved.
+        <p class="text-center text-gray-600 dark:text-white/60">
+          © <span id="year">2025</span> Mohan S G. All rights reserved.
         </p>
         <ul
           class="flex items-center gap-10 justify-center mt-4 sm:mt-0"
