@@ -1,4 +1,4 @@
-const sideMenu = document.getElementById("sideMenu");
+﻿const sideMenu = document.getElementById("sideMenu");
 const html = document.documentElement;
 const navBar = document.querySelector("nav");
 const navLinks = document.querySelector("nav ul");
@@ -99,6 +99,222 @@ initializeTheme();
 // After initial theme is set, sync navbar style
 refreshAfterThemeChange();
 
+// Internship carousel behavior
+const internships = [
+  {
+    number: "01",
+    title: "Full Stack Developer Intern",
+    duration: "Jun 2026 - Aug 2026",
+    company: "Pointel Solutions",
+    image: "public/certificate-6.png",
+    imageAlt: "Pointel Solutions Internship Experience",
+    certificate:
+      "https://drive.google.com/file/d/1P35wAfUYBISfghnP_adb2u9HmdsEWdeb/view?usp=sharing",
+    details:
+      "Completed structured training in Java and Java Full Stack Development, followed by hands-on backend development using Spring Boot, Hibernate and MySQL. Worked on service-layer logic, database operations, debugging and implementing fixes based on business requirements.",
+    highlights: [
+      "Built and enhanced backend functionality using Spring Boot, Hibernate and MySQL.",
+      "Worked on service-layer logic, database operations and debugging to implement application fixes.",
+    ],
+  },
+  {
+    number: "02",
+    title: "Frontend Developer Intern",
+    duration: "Dec 2025 - Mar 2026",
+    company: "Nura9 Technologies",
+    image: "public/certificate-4.png",
+    imageAlt: "Nura9 Internship Certificate",
+    certificate:
+      "https://drive.google.com/file/d/1p6rL5GnlO1kP03rX97wDoD6LtR2FpoB4/view?usp=sharing",
+    details:
+      "Worked on improving UI quality and consistency by fixing design issues and building reusable components. Collaborated with the backend team to integrate REST APIs and enable seamless data flow. Contributed to Flutter mobile features and implemented real-time chat functionality using WebSockets.",
+    highlights: [
+      "Reduced UI issue count by enhancing component reuse and consistency.",
+      "Completed backend API integration for dashboard and user modules.",
+    ],
+  },
+];
+
+const internshipSlides = internships;
+let currentInternship = 0;
+
+function renderInternships() {
+  const track = document.getElementById("internshipTrack");
+  if (!track) return;
+
+  track.innerHTML = internships
+    .map(
+      (internship) => `
+        <article class="w-full min-w-0">
+          <div
+            class="h-full flex flex-col
+                   border border-gray-300 rounded-xl sm:rounded-2xl
+                   p-5 sm:p-6 md:p-8
+                   bg-white
+                   transition-all duration-300
+                   hover:bg-lightHover
+                   md:hover:-translate-y-1
+                   md:hover:shadow-[5px_5px_0_#000]
+                   dark:bg-darkTheme
+                   dark:border-white/20
+                   dark:hover:bg-darkHover
+                   dark:md:hover:shadow-[5px_5px_0_#fff]"
+          >
+
+            <!-- Header -->
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4">
+
+              <div class="min-w-0">
+                <span class="text-xs sm:text-sm text-gray-400 dark:text-white/40">
+                  ${internship.number}
+                </span>
+
+                <h3
+                  class="mt-1 text-xl sm:text-2xl lg:text-3xl
+                         font-semibold leading-tight
+                         text-black dark:text-white break-words"
+                >
+                  ${internship.title}
+                </h3>
+
+                <p
+                  class="mt-2 text-sm sm:text-base
+                         text-gray-500 dark:text-white/60
+                         break-words"
+                >
+                  ${internship.company} · ${internship.duration}
+                </p>
+              </div>
+
+              <span
+                class="w-max shrink-0
+                       px-3 sm:px-4 py-1 sm:py-1.5
+                       rounded-full text-xs
+                       border border-gray-300
+                       text-gray-600
+                       dark:border-white/20 dark:text-white/60"
+              >
+                Internship
+              </span>
+            </div>
+
+            <!-- Description -->
+            <p
+              class="mt-5 sm:mt-6
+                     text-sm sm:text-base
+                     text-gray-700 dark:text-gray-200
+                     leading-6 sm:leading-7"
+            >
+              ${internship.details}
+            </p>
+
+            <!-- Highlights -->
+            <ul
+              class="mt-5 sm:mt-6 space-y-3
+                     text-sm sm:text-base
+                     text-gray-700 dark:text-gray-200"
+            >
+              ${internship.highlights
+                .map(
+                  (highlight) => `
+                    <li class="flex items-start gap-3">
+                      <span
+                        class="mt-2 sm:mt-2.5
+                               w-1.5 h-1.5 rounded-full
+                               bg-gray-500 dark:bg-white/60
+                               shrink-0"
+                      ></span>
+
+                      <span class="min-w-0 leading-6 sm:leading-7">
+                        ${highlight}
+                      </span>
+                    </li>
+                  `,
+                )
+                .join("")}
+            </ul>
+
+            <!-- Certificate -->
+            <div
+              class="mt-auto pt-6 sm:pt-8 mt-6 sm:mt-8
+                     border-t border-gray-200 dark:border-white/10"
+            >
+              <a
+                href="${internship.certificate}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex w-full sm:w-auto
+                       items-center justify-center gap-2
+                       px-5 sm:px-6 py-2.5
+                       text-sm sm:text-base
+                       border border-gray-700
+                       rounded-full
+                       text-gray-700
+                       transition-all duration-300
+                       hover:bg-black hover:text-white
+                       md:hover:-translate-y-0.5
+                       dark:border-white/40
+                       dark:text-white
+                       dark:hover:bg-white
+                       dark:hover:text-black"
+              >
+                View Certificate
+                <span class="text-base sm:text-lg">↗</span>
+              </a>
+            </div>
+
+          </div>
+        </article>
+      `,
+    )
+    .join("");
+}
+
+document.addEventListener("DOMContentLoaded", renderInternships);
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderInternships();
+});
+
+function setInternship(direction) {
+  currentInternship =
+    (currentInternship + direction + internshipSlides.length) %
+    internshipSlides.length;
+  document.getElementById("internshipTrack")?.scrollTo({
+    left:
+      currentInternship *
+      document.getElementById("internshipTrack").clientWidth,
+    behavior: "smooth",
+  });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  renderInternships();
+  const internshipTrack = document.getElementById("internshipTrack");
+  let isInternshipPaused = false;
+
+  const internshipTimer = window.setInterval(() => {
+    if (!isInternshipPaused && !document.hidden) setInternship(1);
+  }, 5000);
+
+  internshipTrack?.addEventListener("mouseenter", () => {
+    isInternshipPaused = true;
+  });
+  internshipTrack?.addEventListener("mouseleave", () => {
+    isInternshipPaused = false;
+  });
+  internshipTrack?.addEventListener("focusin", () => {
+    isInternshipPaused = true;
+  });
+  internshipTrack?.addEventListener("focusout", () => {
+    isInternshipPaused = false;
+  });
+
+  window.addEventListener("beforeunload", () => {
+    window.clearInterval(internshipTimer);
+  });
+});
+
 // Projects section behavior
 const projects = [
   {
@@ -164,30 +380,29 @@ function renderProject(index) {
           "React.js": "public/react.png",
           "Node.js": "public/nodejs.png",
           "Express.js": "public/express.png",
-          "MongoDB": "public/mongodb.png",
-          "TailwindCSS": "public/tailwindCSS.png",
+          MongoDB: "public/mongodb.png",
+          TailwindCSS: "public/tailwindCSS.png",
           "Socket.io": "public/socket.io.png",
         }[tool] || "public/default.png";
       icon.alt = tool;
       icon.className = "w-5 sm:w-6";
-      if (tool === "Express.js" || tool === "Socket.io") icon.classList.add("dark:invert");
+      if (tool === "Express.js" || tool === "Socket.io")
+        icon.classList.add("dark:invert");
       li.appendChild(icon);
       toolsContainer.appendChild(li);
     });
   }
 
-  document.getElementById("prevProject").classList.toggle("!hidden", index === 0);
-  document.getElementById("nextProject").classList.toggle("!hidden", index === projects.length - 1);
-  document.getElementById("prevProjectMobile").classList.toggle("!hidden", index === 0);
-  document.getElementById("nextProjectMobile").classList.toggle("!hidden", index === projects.length - 1);
+  document.getElementById("prevProject").classList.remove("!hidden");
+  document.getElementById("nextProject").classList.remove("!hidden");
+  document.getElementById("prevProjectMobile").classList.remove("!hidden");
+  document.getElementById("nextProjectMobile").classList.remove("!hidden");
 }
 
 function setProject(direction) {
-  const nextIndex = currentProject + direction;
-  if (nextIndex >= 0 && nextIndex < projects.length) {
-    currentProject = nextIndex;
-    renderProject(currentProject);
-  }
+  currentProject =
+    (currentProject + direction + projects.length) % projects.length;
+  renderProject(currentProject);
 }
 
 window.addEventListener("DOMContentLoaded", () => {
