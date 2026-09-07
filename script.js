@@ -240,27 +240,33 @@ function renderInternships() {
                      border-t border-gray-200 dark:border-white/10"
             >
               <a
-                href="${internship.certificate}"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex w-full sm:w-auto
-                       items-center justify-center gap-2
-                       px-5 sm:px-6 py-2.5
-                       text-sm sm:text-base
-                       border border-gray-700
-                       rounded-full
-                       text-gray-700
-                       transition-all duration-300
-                       hover:bg-black hover:text-white
-                       md:hover:-translate-y-0.5
-                       dark:border-white/40
-                       dark:text-white
-                       dark:hover:bg-white
-                       dark:hover:text-black"
-              >
-                View Certificate
-                <span class="text-base sm:text-lg">↗</span>
-              </a>
+  href="${internship.certificate}"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="group inline-flex w-full sm:w-auto
+         items-center justify-center gap-2
+         px-5 sm:px-6 py-2.5
+         text-sm sm:text-base
+         border border-gray-700
+         rounded-full
+         text-gray-700
+         transition-all duration-300
+         hover:bg-black hover:text-white
+         md:hover:-translate-y-0.5
+         dark:border-white/40
+         dark:text-white
+         dark:hover:bg-white
+         dark:hover:text-black"
+>
+  View Certificate
+
+  <img
+    src="./public/right-arrow.png"
+    alt=""
+    class="w-4 transition-all duration-300
+           group-hover:invert"
+  />
+</a>
             </div>
 
           </div>
