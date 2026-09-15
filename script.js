@@ -330,7 +330,10 @@ const projects = [
     tools: ["MongoDB", "Express.js", "React.js", "TailwindCSS", "Node.js"],
     image: "public/project-1.png",
     live: "https://dinearea.netlify.app/",
-    github: "https://github.com/SGMohan/Restaurant-Reservation-Platform",
+    frontendGithub:
+      "https://github.com/SGMohan/Restaurant-Reservation-Platform/tree/main/Client",
+    backendGithub:
+      "https://github.com/SGMohan/Restaurant-Reservation-Platform/tree/main/Server",
   },
   {
     title: "Quick Chat Application",
@@ -346,11 +349,14 @@ const projects = [
     ],
     image: "public/project-2.png",
     live: "https://quickmsg-app.netlify.app/",
-    github: "https://github.com/SGMohan/Chat-App",
+    frontendGithub: "https://github.com/SGMohan/Chat-App/tree/main/frontend",
+    backendGithub: "https://github.com/SGMohan/Chat-App/tree/main/backend",
   },
 ];
 
 let currentProject = 0;
+let projectAutoPlayTimer;
+const projectAutoPlayDelay = 3500;
 
 function renderProject(index) {
   const project = projects[index];
@@ -361,7 +367,8 @@ function renderProject(index) {
   const details = document.getElementById("projectDetails");
   const toolsContainer = document.getElementById("projectTools");
   const liveLink = document.getElementById("projectLive");
-  const gitLink = document.getElementById("projectGit");
+  const frontendGitLink = document.getElementById("projectFrontendGit");
+  const backendGitLink = document.getElementById("projectBackendGit");
   const imgLink = document.getElementById("projectImageLink");
 
   if (img) {
@@ -372,7 +379,8 @@ function renderProject(index) {
   if (title) title.textContent = project.title;
   if (details) details.textContent = project.details;
   if (liveLink) liveLink.href = project.live;
-  if (gitLink) gitLink.href = project.github;
+  if (frontendGitLink) frontendGitLink.href = project.frontendGithub;
+  if (backendGitLink) backendGitLink.href = project.backendGithub;
 
   if (toolsContainer) {
     toolsContainer.innerHTML = "";
@@ -406,13 +414,53 @@ function renderProject(index) {
 }
 
 function setProject(direction) {
+  const showcase = document.getElementById("projectShowcase");
+
+  if (showcase) {
+    showcase.classList.remove("project-slide-next", "project-slide-prev");
+    void showcase.offsetWidth;
+    showcase.classList.add(
+      direction > 0 ? "project-slide-next" : "project-slide-prev",
+    );
+  }
+
   currentProject =
     (currentProject + direction + projects.length) % projects.length;
   renderProject(currentProject);
 }
 
+function stopProjectAutoPlay() {
+  window.clearInterval(projectAutoPlayTimer);
+  projectAutoPlayTimer = undefined;
+}
+
+function startProjectAutoPlay() {
+  stopProjectAutoPlay();
+  if (document.hidden) return;
+
+  projectAutoPlayTimer = window.setInterval(() => {
+    setProject(1);
+  }, projectAutoPlayDelay);
+}
+
 window.addEventListener("DOMContentLoaded", () => {
   renderProject(0);
+
+  const projectShowcase = document.getElementById("projectShowcase");
+  projectShowcase?.addEventListener("mouseenter", stopProjectAutoPlay);
+  projectShowcase?.addEventListener("mouseleave", startProjectAutoPlay);
+  projectShowcase?.addEventListener("touchstart", stopProjectAutoPlay, {
+    passive: true,
+  });
+  projectShowcase?.addEventListener("touchend", startProjectAutoPlay, {
+    passive: true,
+  });
+  projectShowcase?.addEventListener("focusin", stopProjectAutoPlay);
+  projectShowcase?.addEventListener("focusout", (event) => {
+    if (!projectShowcase.contains(event.relatedTarget)) {
+      startProjectAutoPlay();
+    }
+  });
 
   document.getElementById("nextProject")?.addEventListener("click", (e) => {
     e.preventDefault();
@@ -437,4 +485,34 @@ window.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       setProject(-1);
     });
+
+  startProjectAutoPlay();
 });
+
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    stopProjectAutoPlay();
+  } else {
+    startProjectAutoPlay();
+  }
+});
+
+function initializeSkillInteractions() {
+  const skillButtons = document.querySelectorAll("[data-skill-target]");
+
+  skillButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = button.dataset.skillTarget;
+
+      document
+        .querySelectorAll(`[data-skill-target="${target}"]`)
+        .forEach((skill) => {
+          const isActive = skill === button;
+          skill.classList.toggle("is-active", isActive);
+          skill.setAttribute("aria-pressed", String(isActive));
+        });
+    });
+  });
+}
+
+window.addEventListener("DOMContentLoaded", initializeSkillInteractions);
